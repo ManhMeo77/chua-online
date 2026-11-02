@@ -1,0 +1,23 @@
+{
+  "name": "game-di-chua",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chùa 3D nhiều người chơi trên trình duyệt (Three.js + WebSocket)",
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c yellow,cyan \"node --watch server/index.js\" \"vite\"",
+    "build": "vite build",
+    "start": "node server/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "three": "^0.170.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "vite": "^5.4.11"
+  }
+}

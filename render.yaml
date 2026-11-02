@@ -1,0 +1,20 @@
+# Cấu hình triển khai lên Render.com (gói Free: HTTPS tự động, WebSocket chạy được).
+# Trên Render: New → Blueprint → chọn repo này → điền 2 biến Upstash → Apply.
+services:
+  - type: web
+    name: chua-online
+    runtime: node
+    plan: free
+    region: singapore # gần Việt Nam nhất
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # Lưu công đức / tài khoản lên Upstash Redis (miễn phí) vì ổ đĩa của gói Free bị xóa mỗi lần khởi động lại.
+      # Lấy ở console.upstash.com → tạo database Redis → mục REST API.
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
